@@ -877,12 +877,12 @@
         },
 
         query: function(text) {
-            var lexer = new Lexer(text)
-            lexer.start()
-            var parser = new Parser(lexer.list)
+            var lexer = new Lexer(text) // 词法分析
+            lexer.start() 
+            var parser = new Parser(lexer.list) // 语法分析
             parser.start()
-            this.ast = parser.ast
-            this.exce()
+            this.ast = parser.ast 
+            this.exce() // 遍历语法树和执行 
 
             return this.result
         },
