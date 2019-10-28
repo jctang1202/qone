@@ -22,6 +22,8 @@
         'undefined'
     ]) // 原生关键词
     var atomMapping = { 'null': null, 'undefined': undefined, 'true': true, 'false': false }
+    
+    // 是否拥有属性，就是判断是否在该属性合集里
     function HOP(obj, prop) {
         return Object.prototype.hasOwnProperty.call(obj, prop)
     }
@@ -301,6 +303,7 @@
             return name
         },
 
+        // 读取字符
         readString: function() {
             var quote = this.next(), ret = ''
             for (; ;) {
@@ -318,6 +321,7 @@
             }
         },
 
+        // 读取文字
         readWord: function() {
             var word = this.readName()
             if (HOP(KEYWORD, word)) {
@@ -347,6 +351,7 @@
             }
         },
 
+        // 下一个字符
         next: function() {
             var ch = this.text.charAt(this.pos++)
 
@@ -359,15 +364,18 @@
             return ch
         },
 
+        // 返回当前pos位置上的字符
         peek: function() {
             return this.text.charAt(this.pos)
         },
 
+        // 跳过一段空白符号
         skipWhitespace: function() {
             while (HOP(WHITESPACE_CHARS, this.peek())) {
                 this.next()
             }
         },
+        
         // 扫描方法
         scan: function() {
             this.skipWhitespace()
