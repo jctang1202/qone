@@ -245,7 +245,7 @@
     // 词法分析器
     var Lexer = function(text) {
         this.line = 0 // 行数
-        this.pos = 0 // offset 偏离
+        this.pos = 0 // 当前读取位置
         this.col = 0 // 列数
         this.text = text // 文本
         this.list = [] // token数组
