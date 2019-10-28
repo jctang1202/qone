@@ -85,6 +85,11 @@
         connector_punctuation: new RegExp('[\\u005F\\u203F\\u2040\\u2054\\uFE33\\uFE34\\uFE4D-\\uFE4F\\uFF3F]')
     } // 使用正则来匹配一些符号
 
+    console.log(UNICODE.letter.source)
+    console.log(UNICODE.non_spacing_mark.source)
+    console.log(UNICODE.space_combining_mark.source)
+    console.log(UNICODE.connector_punctuation.source)
+
     // 合法字符
     function isLetter(ch) {
         return UNICODE.letter.test(ch) || ch==='_'
@@ -486,9 +491,9 @@
     }
 
     var Parser = function(tokens) {
-        this.tokens = tokens
-        this.index = 0
-        this.ast = []
+        this.tokens = tokens // lexer解析出来的tokens
+        this.index = 0 // 当前索引
+        this.ast = [] // 语法树
     }
 
     Parser.prototype = {
