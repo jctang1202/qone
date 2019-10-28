@@ -252,6 +252,7 @@
     }
 
     Lexer.prototype = {
+        // 读取数字token
         readNum: function(prefix) {
             var has_e = false, after_e = false, has_x = false, has_dot = prefix == '.'
             var num = this.readWhile(function(ch, i) {
@@ -291,6 +292,7 @@
             return ret
         },
 
+        // 读取标识符
         readName: function() {
             var name = '', ch
             while ((ch = this.peek()) != null) {
@@ -303,7 +305,7 @@
             return name
         },
 
-        // 读取字符
+        // 读取字符串token
         readString: function() {
             var quote = this.next(), ret = ''
             for (; ;) {
@@ -321,7 +323,7 @@
             }
         },
 
-        // 读取文字
+        // 读取标识符token
         readWord: function() {
             var word = this.readName()
             if (HOP(KEYWORD, word)) {
